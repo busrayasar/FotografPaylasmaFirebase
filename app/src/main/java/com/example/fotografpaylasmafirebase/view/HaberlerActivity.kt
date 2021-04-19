@@ -1,21 +1,24 @@
 package com.example.fotografpaylasmafirebase.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.example.fotografpaylasmafirebase.model.Post
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fotografpaylasmafirebase.R
+import com.example.fotografpaylasmafirebase.adapter.HaberRecyclerAdapter
+import com.example.fotografpaylasmafirebase.model.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_haberler.*
 
 class HaberlerActivity : AppCompatActivity() {
     private lateinit var  auth: FirebaseAuth
     private lateinit var database : FirebaseFirestore
-
+    private lateinit var recyclerViewAdapter : HaberRecyclerAdapter
     var postList = ArrayList<Post>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +28,13 @@ class HaberlerActivity : AppCompatActivity() {
         auth =  FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance() //db yi oluşturduk
         verileriAl()
+        //haberlerAdapterda aldığımız görünümleri buraya koyalım
+        //alt alta recycler_rowların oluşturulacağını söylemek için LayoutManager kullanırız
+        var layoutMngr = LinearLayoutManager(this)
+        recyclerView.layoutManager=layoutMngr
+        recyclerViewAdapter = HaberRecyclerAdapter(postList)
+        recyclerView.adapter =recyclerViewAdapter
+
 
     }
     fun verileriAl(){
@@ -49,9 +59,9 @@ class HaberlerActivity : AppCompatActivity() {
                             val indirilenPost = Post(kullaniciEmail, kullaniciYorumu, gorselUrl)
                             postList.add(indirilenPost)
 
-
-
                         }
+                        //yeni veri geldi kendini yenile
+                        recyclerViewAdapter.notifyDataSetChanged()
                     }
                 }
 
