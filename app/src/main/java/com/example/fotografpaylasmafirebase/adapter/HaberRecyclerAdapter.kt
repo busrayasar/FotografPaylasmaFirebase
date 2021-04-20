@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fotografpaylasmafirebase.R
 import com.example.fotografpaylasmafirebase.model.Post
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recycler_row.view.*
 
 
@@ -27,6 +28,9 @@ class HaberRecyclerAdapter(val postlist : ArrayList<Post>): RecyclerView.Adapter
         //holder parametresini kullnarak ben PostHolder sınıfından oluşturulan objeye ulaşabiliyorum
         holder.itemView.recycler_row_user_email.text = postlist[position].kullaniciemail
         holder.itemView.recycler_row_user_yorumu.text = postlist[position].kullaniciyorum
+        Picasso.get().load(postlist[position].gorselUrl).into(holder.itemView.recycler_row_imageview)
+        //picasso ile db den resmi çekip imageviewa  yükleriz
+
     }
 
     override fun getItemCount(): Int {
