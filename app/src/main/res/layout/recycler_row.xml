@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/recyclerLLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-   >
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/recycler_row_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kullanici email"
-        android:textSize="20sp"
         android:layout_margin="5dp"
-        android:textColor="#0D1D77">
-    </TextView>
+        android:text="Kullanici email"
+        android:textColor="#0D1D77"
+        android:textSize="20sp"></TextView>
 
     <ImageView
         android:id="@+id/recycler_row_imageview"
@@ -28,10 +27,9 @@
         android:id="@+id/recycler_row_user_yorumu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kullanici yorumu"
-        android:textSize="18sp"
         android:layout_margin="5dp"
-        android:textColor="#9C27B0">
-    </TextView>
+        android:text="Kullanici yorumu"
+        android:textColor="#9C27B0"
+        android:textSize="18sp"></TextView>
 
 </LinearLayout>
